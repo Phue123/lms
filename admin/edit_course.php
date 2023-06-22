@@ -10,7 +10,6 @@ $categories=$cat_controller->getCategorysAdmin();
 $id=$_GET['id'];
 $course_controller=new CourseController();
 $courses=$course_controller->getCourseInfoAdmin($id);
-var_dump($courses);
 
 if(isset($_POST['update'])){
     $name=$_POST['name'];
