@@ -208,7 +208,7 @@ $students=$student_controller->getStudents();
                                 <small class="fa fa-star text-primary"></small>
                                 <small>(123)</small>
                             </div>
-                            <h5 class="mb-4"><?php echo $course['cosname'] ; ?></h5>
+                            <h5 class="mb-4"><?php echo $course['batch_id'] ; ?> . <?php echo $course['cosname'] ; ?></h5>
                         </div>
                         <div class="d-flex border-top">
                             <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i><?php echo $course['instructorname']; ?></small>

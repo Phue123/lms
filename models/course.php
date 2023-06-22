@@ -7,21 +7,20 @@ class Course{
         $con=Database::connect();
         $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-        $sql="SELECT table1.cosname as cosname,table1.price as price,table2.instructorname as instructorname,table3.total as total
-        FROM trainee join
-        (SELECT count(trainee_id) as total,batch_id,trainee_id
+        $sql="SELECT table1.batchid as batch_id,table1.cosname as cosname,table1.price as price,table2.instructorname as instructorname,table3.total as total
+        FROM
+        (SELECT count(batch_id) as total,batch_id
          from trainee_course
-        GROUP by trainee_id)as table3 join
+        GROUP by batch_id)as table3 join
         
         (SELECT batch.id as batchid,course.name as cosname,batch.fee as price
         from course join batch 
-         WHERE course.id=batch.course_id GROUP BY course_id)as table1 JOIN
+         WHERE course.id=batch.course_id)as table1 JOIN
          
         (SELECT course_instructor.batch_id as batchid,instructor.name as instructorname
         FROM course_instructor JOIN instructor
          WHERE course_instructor.instructor_id=instructor.id)as table2
          WHERE table1.batchid=table2.batchid
-         and table3.trainee_id=trainee.id
          and table3.batch_id=table1.batchid";
          
         $statement=$con->prepare($sql);
