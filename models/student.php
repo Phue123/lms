@@ -6,7 +6,7 @@ class Student{
         $con=Database::connect();
         $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-        $sql="SELECT name from trainee";
+        $sql="SELECT * from trainee";
         $statement=$con->prepare($sql);
         if($statement->execute()){
             $result=$statement->fetchAll(PDO::FETCH_ASSOC);

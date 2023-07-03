@@ -12,7 +12,9 @@ if(isset($_POST['submit'])){
     $name=$_POST['name'];
     $cat_id=$_POST['cat_id'];
     $outline=$_POST['outline'];
-    $status=$cos_controller->addCourse($name,$cat_id,$outline);
+    $image=$_FILES['image'];
+    //var_dump($image);
+     $status=$cos_controller->addCourse($name,$cat_id,$outline,$image);
     if($status){
         echo '<script>location.href="course.php?status='.$status.'"</script>';
     }
@@ -26,7 +28,7 @@ if(isset($_POST['submit'])){
 
 					<div class="row">
                         <div class="col-md-12">
-                            <form action="" method="post">
+                            <form action="" method="post" enctype="multipart/form-data">
                                 <div>
                                     <label for="" class="form-label">Name</label>
                                     <input type="text" name="name" class="form-control">
@@ -44,6 +46,10 @@ if(isset($_POST['submit'])){
                                 <div>
                                     <label for="" class="form-label">Outline</label>
                                     <textarea name="outline" id="" cols="30" rows="10" class="form-control"></textarea>
+                                </div>
+                                <div class="my-3">
+                                    <label for="" class="form-label">Course Featured Image</label>
+                                    <input type="file" name="image" class="form-control">
                                 </div>
                                 <div class="mt-3">
                                     <button class="btn btn-dark" name="submit">Add</button>

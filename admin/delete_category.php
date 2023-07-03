@@ -5,7 +5,7 @@ $id=$_POST['id'];
 $cat_con=new Categorycontroller();
 $result=$cat_con->deleteCategory($id);
 if($result){
-    echo "success";
+    echo "Success";
 }
 else
 {

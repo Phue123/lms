@@ -67,7 +67,22 @@
               <i class="align-middle" data-feather="list"></i> <span class="align-middle">Batch</span>
             </a>
 					</li>
-					
+					</li>
+					<li class="sidebar-item <?php echo basename($_SERVER['PHP_SELF']) == "project.php" ? "active" : "";?>">
+						<a class="sidebar-link" href="project.php">
+              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Project</span>
+            </a>
+					</li>
+					<li class="sidebar-item <?php echo basename($_SERVER['PHP_SELF']) == "project_trainee.php" ? "active" : "";?>">
+						<a class="sidebar-link" href="project_trainee.php">
+              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Project Trainee</span>
+            </a>
+					</li>
+					<li class="sidebar-item <?php echo basename($_SERVER['PHP_SELF']) == "trainee_course.php" ? "active" : "";?>">
+						<a class="sidebar-link" href="trainee_course.php">
+              <i class="align-middle" data-feather="list"></i> <span class="align-middle">Registration Form</span>
+            </a>
+					</li>
                 </ul>
 			</div>
 		</nav>

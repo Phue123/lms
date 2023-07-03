@@ -15,11 +15,11 @@ class Trainee{
         return $result;
     }
 
-    public function addtrainee($name,$email,$phone,$city,$education,$remark,$status){
+    public function addtrainee($name,$email,$phone,$city,$education,$remark){
         $con=Database::connect();
         $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-         $sql="INSERT INTO trainee(name,email,phone,city,education,remark,status) values(:name,:email,:phone,:city,:education,:remark,:status)";
+         $sql="INSERT INTO trainee(name,email,phone,city,education,remark) values(:name,:email,:phone,:city,:education,:remark)";
          $statement=$con->prepare($sql);
          $statement->BindParam(':name',$name);
          $statement->BindParam(':email',$email);
@@ -27,7 +27,6 @@ class Trainee{
          $statement->BindParam(':city',$city);
          $statement->BindParam(':education',$education);
          $statement->BindParam(':remark',$remark);
-         $statement->BindParam(':status',$status);
 
          if($statement->execute()){
             return true;
@@ -50,11 +49,11 @@ class Trainee{
         return $result;
     }
 
-    public function setTrainee($id,$name,$email,$phone,$city,$education,$remark,$status){
+    public function setTrainee($id,$name,$email,$phone,$city,$education,$remark){
         $con=Database::connect();
         $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-         $sql="UPDATE trainee set name=:name,email=:email,phone=:phone,city=:city,education=:education,remark=:remark,status=:status where id=:id";
+         $sql="UPDATE trainee set name=:name,email=:email,phone=:phone,city=:city,education=:education,remark=:remark where id=:id";
          $statement=$con->prepare($sql);
          $statement->BindParam(':id',$id);
          $statement->BindParam(':name',$name);
@@ -63,7 +62,6 @@ class Trainee{
          $statement->BindParam(':city',$city);
          $statement->BindParam(':education',$education);
          $statement->BindParam(':remark',$remark);
-         $statement->BindParam(':status',$status);
 
          if($statement->execute()){
             return true;
@@ -84,6 +82,19 @@ class Trainee{
             return true;
         }catch(PDOException $e){
             return false;
+        }
+    }
+
+    public function getmailTrainee($id){
+        $con=Database::connect();
+        $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+        $sql="SELECT * from trainee where id=:id";
+        $statement=$con->prepare($sql);
+        $statement->BindParam(':id',$id);
+        if($statement->execute()){
+            $result=$statement->fetch(PDO::FETCH_ASSOC);
+            return $result['email'];
         }
     }
 }

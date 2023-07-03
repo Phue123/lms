@@ -12,8 +12,7 @@ if(isset($_POST['submit'])){
     $city=$_POST['city'];
     $education=$_POST['education'];
     $remark=$_POST['remark'];
-    $status=$_POST['status'];
-    $result=$train_controller->addTraineeAdmin($name,$email,$phone,$city,$education,$remark,$status);
+    $result=$train_controller->addTraineeAdmin($name,$email,$phone,$city,$education,$remark);
     {
         echo '<script>location.href="trainee.php?result='.$result.'"</script>';
     }
@@ -51,10 +50,6 @@ if(isset($_POST['submit'])){
                                 <div>
                                     <label for="" class="form-label">Remark</label>
                                     <input type="text" name="remark" class="form-control">
-                                </div>
-                                <div>
-                                    <label for="" class="form-label">Status</label>
-                                    <input type="text" name="status" class="form-control">
                                 </div>
                                 <div class="mt-3">
                                     <button class="btn btn-dark" name="submit">Add</button>

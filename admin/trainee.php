@@ -14,6 +14,10 @@ $trainees=$train_controller->getTraineeAdmin();
                     if(isset($_GET['result']) && $_GET['result']==1){
                         echo "<div class='text-success'>New trainee has been successfully created</div>";
                     }
+                    if(isset($_GET['status']) && $_GET['status']==3)
+                    {
+                        echo "<div class='text-success'>Email already send</div>";
+                    }
                     ?>
                     <div class="row">
                         <div class="col-md-3 mt-3">
@@ -48,7 +52,7 @@ $trainees=$train_controller->getTraineeAdmin();
                                         echo "<td>" . $trainee['city'] . "</td>";
                                         echo "<td>" . $trainee['education'] . "</td>";
                                         echo "<td>" . $trainee['remark'] . "</td>";
-                                        echo "<td>" . $trainee['status'] . "</td>";
+                                        echo "<td><a class='btn btn-info mx-3' href='email_trainee.php?id=".$trainee['id']."'>Send</a></div>";
                                         echo "<td id='".$trainee['id']."'><a class='btn btn-warning mx-3' href='edit_trainee.php?id=".$trainee['id']."'>Edit</a><button class='btn btn-danger trainbtn_delete'>Delete</button></td>";
                                         echo "</tr>";
                                     }

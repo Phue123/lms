@@ -35,6 +35,7 @@ $courses=$cos_controller->getCourseAdmin();
 									<th>Name</th>
 									<th>Course Category</th>
 									<th>Outline</th>
+									<th>Image</th>
 									<th>Actions</th>
 								</thead>
 								<tbody>
@@ -46,6 +47,7 @@ $courses=$cos_controller->getCourseAdmin();
 										echo "<td>". $course['name'] ."</td>";
 										echo "<td>". $course['cat_id'] ."</td>";
 										echo "<td>". $course['outline'] ."</td>";
+										echo "<td><img src='../uploads/". $course['image'] ."' width='100px' height='100px'></td>";
 										echo "<td id='".$course['id']."'> <a class='btn btn-warning mx-3' href='edit_course.php?id=".$course['id']."'>Edit</a> <button class='btn btn-danger coursebtn_delete'>Delete</button></div>" ;
 										echo "</tr>";
 									}

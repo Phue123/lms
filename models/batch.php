@@ -88,5 +88,31 @@ class batch{
             return false;
         }
     }
+
+    public function getBatchInfoTraineeCourse(){
+        $con=Database::connect();
+        $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+        $sql="select * from batch";
+        $statement=$con->prepare($sql);
+
+        if($statement->execute()){
+            $result=$statement->fetchALL(PDO::FETCH_ASSOC);
+            return $result;
+        }
+    }
+
+    public function getBatchPerYear(){
+        $con=Database::connect();
+        $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+        $sql="SELECT year(start_date)as year,count(id) as total from batch group by year(start_date)";
+        $statement=$con->prepare($sql);
+
+        if($statement->execute()){
+            $result=$statement->fetchALL(PDO::FETCH_ASSOC);
+            return $result;
+        }
+    }
 }
 ?>

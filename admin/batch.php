@@ -25,7 +25,7 @@ $batches=$batch_controller->getBatchLists();
 
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-striped">
+                            <table class="table table-striped" id="table">
                                 <thead>
                                     <th>No.</th>
                                     <th>Name</th>
@@ -34,6 +34,7 @@ $batches=$batch_controller->getBatchLists();
                                     <th>Fee</th>
                                     <th>Discount</th>
                                     <th>Course Name</th>
+                                    <th>Actions</th>
                                 </thead>
                                 <tbody>
                                     <?php

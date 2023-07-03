@@ -19,5 +19,14 @@ class batchController extends batch{
     public function deleteBatch($id){
         return $this->deleteBatchInfo($id);
     }
+
+    public function getBatchInfoTraineeCourses()
+    {
+        return $this->getBatchInfoTraineeCourse();
+    }
+
+    public function batchPerYear(){
+        return $this->getBatchPerYear();
+    }
 }
 ?>

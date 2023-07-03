@@ -13,8 +13,7 @@ if(isset($_POST['update'])){
     $city=$_POST['city'];
     $education=$_POST['education'];
     $remark=$_POST['remark'];
-    $status=$_POST['status'];
-    $result=$train_controller->updateTrainee($id,$name,$email,$phone,$city,$education,$remark,$status);
+    $result=$train_controller->updateTrainee($id,$name,$email,$phone,$city,$education,$remark);
     if($result){
         echo '<script>location.href="trainee.php"</script>';
     }
@@ -52,10 +51,6 @@ if(isset($_POST['update'])){
                                 <div>
                                     <label for="" class="form-label">Remark</label>
                                     <input type="text" name="remark" class="form-control" value="<?php echo $trainees['remark'] ?>">
-                                </div>
-                                <div>
-                                    <label for="" class="form-label">Status</label>
-                                    <input type="text" name="status" class="form-control" value="<?php echo $trainees['status'] ?>">
                                 </div>
                                 <div class="mt-3">
                                     <button class="btn btn-dark" name="update">Update</button>

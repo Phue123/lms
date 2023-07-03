@@ -25,7 +25,7 @@ class Course{
          
         $statement=$con->prepare($sql);
         if($statement->execute()){
-            $result=$statement->fetchall(PDO::FETCH_ASSOC);
+            $result=$statement->fetch(PDO::FETCH_ASSOC);
         }
         return $result;
     }
@@ -34,7 +34,7 @@ class Course{
         $con=Database::connect();
         $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-        $sql="SELECT course.id as id,course.name as name,category.name as cat_id,course.outline as outline
+        $sql="SELECT course.id as id,course.name as name,category.name as cat_id,course.outline as outline,course.image as image
         from course join category
         where course.cat_id=category.id";
 
@@ -45,15 +45,16 @@ class Course{
         return $result;
     }
 
-    public function createCourse($name,$cat_id,$outline){
+    public function createCourse($name,$cat_id,$outline,$filename){
         $con=Database::connect();
         $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-        $sql="INSERT into course(name,cat_id,outline) value(:name,:cat_id,:outline)";
+        $sql="INSERT into course(name,cat_id,outline,image) value(:name,:cat_id,:outline,:image)";
         $statement=$con->prepare($sql);
         $statement->bindParam(':name',$name);
         $statement->bindParam(':cat_id',$cat_id);
         $statement->bindParam(':outline',$outline);
+        $statement->bindParam(':image',$filename);
         if($statement->execute()){
             return true;
         }
@@ -67,7 +68,7 @@ class Course{
         $con=Database::connect();
         $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-        $sql="SELECT course.id as id,course.name as name,course.cat_id as cat_id,category.name as catname,course.outline as outline
+        $sql="SELECT course.id as id,course.name as name,course.cat_id as cat_id,category.name as catname,course.outline as outline,course.image as image
         from course join category
         where course.cat_id=category.id
         and course.id=:id";
@@ -81,16 +82,17 @@ class Course{
         }
     }
 
-    public function setCourses($id,$name,$cat_id,$outline){
+    public function setCourses($id,$name,$cat_id,$outline,$filename){
         $con=Database::connect();
         $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-        $sql="UPDATE course set name=:name,cat_id=:cat_id,outline=:outline where id=:id";
+        $sql="UPDATE course set name=:name,cat_id=:cat_id,outline=:outline,image=:image where id=:id";
         $statement=$con->prepare($sql);
         $statement->bindParam(':id',$id);
         $statement->bindParam(':name',$name);
         $statement->bindParam(':cat_id',$cat_id);
         $statement->bindParam(':outline',$outline);
+        $statement->bindParam(':image',$filename);
 
         if($statement->execute()){
             return true;
@@ -125,6 +127,20 @@ class Course{
         if($statement->execute()){
             $result=$statement->fetchALL(PDO::FETCH_ASSOC);
             return $result;
+        }
+    }
+
+    public function getCourseInfoTrainee(){
+        $con=Database::connect();
+        $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+        $sql="select * from course";
+        $statement=$con->prepare($sql);
+
+        if($statement->execute()){
+            $result=$statement->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+
         }
     }
 }
