@@ -35,8 +35,12 @@ class projectTraineeController extends projectTrainee{
         return $this->deleteProjectTraineeInfo($id);
     }
 
-    public function showtrainee($id){
-        
+    public function getdetails($id){
+        return $this->getdetailsInfo($id);
+    }
+
+    public function updatetrainee($id,$project_id,$tname,$status){
+        return $this->settrainee($id,$project_id,$tname,$status);
     }
 }
 ?>

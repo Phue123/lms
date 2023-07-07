@@ -7,7 +7,8 @@ class Project{
         $con=Database::connect();
         $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-        $sql="SELECT project.id as id,project.title as title,project.start_date as start_date,project.rate as rate,batch.name as name from project join batch where project.batch_id=batch.id";
+        $sql="SELECT project.id as id,project.title as title,project.start_date as start_date,project.rate as rate,batch.name as name
+        from project join batch where project.batch_id=batch.id";
 
         $statement=$con->prepare($sql);
         if($statement->execute()){

@@ -17,8 +17,8 @@ echo "<br>";
 
 $pid=$batch['batch_id'];
 
-$train_con=new train_cosController();
-$trainees=$train_con->gettraineeByBatchs($pid);
+$project_train=new projectTraineeController();
+$trainees=$project_train->getTraineeByProjects($pid);
 var_dump($trainees);
 
 // $trainees=$project_train->getTraineeByProject($bname);
@@ -48,7 +48,7 @@ if(isset($_POST['add'])){
                     <div class="row">
                         <div class="col-md-6">
                             <p>Project Title: <?php echo $project['project_id'] ?></p>
-                            <p>Project Date: <?php echo $project['trainee_course_id'] ?></p>
+                            <p>Project Date: <?php echo $project['tname'] ?></p>
                             <p>Project Rate: <?php echo $project['status'] ?></p>
                         </div>
                     </div>
@@ -64,12 +64,12 @@ if(isset($_POST['add'])){
                                         <select name="trainee[]" id="trainee0" class="form-select">
                                         <?php
                                         foreach($trainees as $trainee){
-                                            echo "<option value=".$trainee['trainee_id'].">". $trainee['name']."</option>";
+                                            echo "<option value=".$trainee['project_id'].">". $trainee['tname']."</option>";
                                         }
                                         ?>
                                         </select>
                                         </div>
-                                        <div class="col-md-2 mt-4" id="<?php echo $project_id; ?>">
+                                        <div class="col-md-2 mt-4" id="<?php echo $id; ?>">
                                             <button class="btn btn-primary addmore1">Add More</button>
                                         </div>
                                     </div>

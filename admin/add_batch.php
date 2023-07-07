@@ -21,14 +21,50 @@ if(isset($_POST['submit'])){
 }
 
 if(isset($_POST['submit'])){
-    if(empty($_POST['name']) || empty($_POST['start_date']) || empty($_POST['duration']) || empty($_POST['fee']) || empty($_POST['discount']) || empty($_POST['course_id'])){
-        $nameerror="Please fill your name";
-        $dateerror="Please fill your date";
-        $durationerror="Please fill your duration";
-        $feeerror="Please fill your fee";
-        $discounterror="Please fill your discount";
-        $course_iderror="Please fill your course name";
+    
+    if(empty($_POST['name'])){
+    $nameerror="Please fill your name";
     }else{
+        $name=$_POST['name'];
+    }
+
+    if(empty($_POST['start_date'])){
+    $dateerror="Please fill your date";
+    }else{
+    $start_date=$_POST['start_date'];
+    }
+
+    if(empty($_POST['duration'])){
+    $durationerror="Please fill your duration";
+     }else{
+    $duration=$_POST['duration'];
+    }
+
+    if(empty($_POST['fee'])){
+    $feeerror="Please fill your fee";
+    }else{
+    $fee=$_POST['fee'];
+    }
+
+    if(empty($_POST['discount'])){
+    $discounterror="Please fill your discount";
+    }else{
+    $discount=$_POST['discount'];
+    }
+
+    if(empty($_POST['course_id'])){
+    $course_iderror="Please fill your course name";
+    }else{
+    $course_id=$_POST['course_id'];
+    }
+
+    if(empty($_POST['name']) || empty($_POST['start_date']) || empty($_POST['duration']) || empty($_POST['fee']) || empty($_POST['discount']) || empty($_POST['course_id']))
+    {
+        
+        $error=true;
+    }
+    else
+    {
     $name=$_POST['name'];
     $start_date=$_POST['start_date'];
     $duration=$_POST['duration'];
@@ -57,39 +93,46 @@ if(isset($_POST['submit'])){
                                 <div>
                                     <label for="" class="form-label">Name</label>
                                     <input type="text" name="name" class="form-control" value="<?php if(isset($name)) echo $name; ?>">
-                                    <span class="text-danger"><?php if(isset($nameerror)) echo $nameerror; ?></span>
+                                    <span class="text-danger"><?php if(isset($error) && isset($nameerror)) echo $nameerror; ?></span>
                                 </div>
                                 <div>
                                     <label for="" class="form-label">Start Date</label>
-                                    <input type="date" name="start_date" class="form-control" value="<?php if(isset($name)) echo $dateerror; ?>">
-                                    <span class="text-danger"><?php if(isset($dateerror)) echo $dateerror; ?></span>
+                                    <input type="date" name="start_date" class="form-control" value="<?php if(isset($start_date)) echo $start_date; ?>">
+                                    <span class="text-danger"><?php if(isset($error) && isset($dateerror)) echo $dateerror; ?></span>
                                 </div>
                                 <div>
                                     <label for="" class="form-label">Duration</label>
-                                    <input type="text" name="duration" class="form-control" value="<?php if(isset($name)) echo $name; ?>">
-                                    <span class="text-danger"><?php if(isset($durationerror)) echo $durationerror; ?></span>
+                                    <input type="text" name="duration" class="form-control" value="<?php if(isset($duration)) echo $duration    ; ?>">
+                                    <span class="text-danger"><?php if(isset($error) && isset($durationerror)) echo $durationerror; ?></span>
                                 </div>
                                 <div>
                                     <label for="" class="form-label">Fee</label>
-                                    <input type="text" name="fee" class="form-control" value="<?php if(isset($name)) echo $name; ?>">
-                                    <span class="text-danger"><?php if(isset($feeerror)) echo $feeerror; ?></span>
+                                    <input type="text" name="fee" class="form-control" value="<?php if(isset($fee)) echo $fee; ?>">
+                                    <span class="text-danger"><?php if(isset($error) && isset($feeerror)) echo $feeerror; ?></span>
                                 </div>
                                 <div>
                                     <label for="" class="form-label">Discount</label>
-                                    <input type="text" name="discount" class="form-control" value="<?php if(isset($name)) echo $name; ?>">
-                                    <span class="text-danger"><?php if(isset($discounterror)) echo $discounterror; ?></span>
+                                    <input type="text" name="discount" class="form-control" value="<?php if(isset($discount)) echo $discount; ?>">
+                                    <span class="text-danger"><?php if(isset($error) && isset($discounterror)) echo $discounterror; ?></span>
                                 </div>
                                 <div>
                                     <label for="" class="form-label">Course Name</label>
                                     <select name="course_id" class="form-select">
-                                        <option value="<?php if(isset($name)) echo $name; ?>"></option>
+                                        <option value="" selected disabled>--SELECT COURSE--</option>
                                         <?php
                                         foreach($courses as $course){
-                                            echo "<option value='".$course['id']."'>". $course['name']."</option>";
+                                            ?>
+                                            <option value="<?php echo $course['id'] ?>" 
+                                            <?php if(isset($_POST['course_id']) ==$course['id'])
+                                                    echo 'selected'; 
+                                                   ?>>
+                                            <?php echo $course['name']; ?>
+                                            </option>;
+                                        <?php
                                         }
                                         ?>
                                     </select>
-                                    <span class="text-danger"><?php if(isset($course_iderror)) echo $course_iderror; ?></span>
+                                    <span class="text-danger"><?php if(isset($error) && isset($course_iderror)) echo $course_iderror; ?></span>
                                 </div>
                                 <div class="mt-3">
                                     <button class="btn btn-dark" name="submit">Add</button>

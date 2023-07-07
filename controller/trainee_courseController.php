@@ -53,21 +53,16 @@ class train_cosController extends TraineeCourse{
         $mailer->Password="zwszunlpdalwfwqe";
 
         $mailer->SetFrom('phuepwint293989@gmail.com','Admin');
-        $mailer->addAddress("hsetmon@gmail.com","TraineeName");
+        $mailer->addAddress($emailaddress['email'],"TraineeName");
 
         $mailer->isHTML(true);
         $mailer->Subject="Testing for Registration";
         $mailer->Body="Batch name :". $emailaddress['bname']."<br> Joined Date :" . $emailaddress['joined_date'] ."<br> Duration : " . $emailaddress['duration']."<br> Course Outline : " . $emailaddress['outline']."<br>";
         $mailer->addEmbeddedImage('../uploads/'.$emailaddress['image'],'image');
         if($mailer->send()){
-        //     $sentEmail=$this->setEmailDetails($emailaddress['trainee_course_id']);
-        // }
-        // return $sentEmail;
-        return true;
-        }
-        else
-        {
-        return false;
+            echo '<script>alert("Successfully send")</script>';
+            $sentEmail=$this->setEmailDetails($emailaddress['trainee_course_id']);
+        return $sentEmail;
     }
 
     }

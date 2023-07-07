@@ -93,7 +93,7 @@ class TraineeCourse{
             $con=Database::connect();
             $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     
-            $sql="SELECT trainee_course.id as trainee_course_id,course.outline as outline,course.image as image,batch.duration as duration,trainee_course.id as id,batch.name as bname,trainee.name as tname,trainee_course.joined_date as joined_date,trainee_course.status as status
+            $sql="SELECT trainee_course.id as trainee_course_id,course.outline as outline,course.image as image,batch.duration as duration,trainee_course.id as id,batch.name as bname,trainee.name as tname,trainee.email as email,trainee_course.joined_date as joined_date,trainee_course.status as status
             FROM batch join course join trainee_course JOIN trainee
             on batch.id=trainee_course.batch_id
             AND trainee_course.trainee_id=trainee.id

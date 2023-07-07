@@ -28,8 +28,8 @@ class ProjectController extends Project{
         return $this->deleteProjectInfo($id);
     }
 
-    public function addojtTrainees($trainee){
-        return $this->createojtTrainees($trainee);
-    }
+    // public function addojtTrainees($trainee){
+    //     return $this->createojtTrainees($trainee);
+    // }
 }
 ?>

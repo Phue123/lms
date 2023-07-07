@@ -32,7 +32,7 @@ $projects=$project_con->getProjectes();
 									<th>Start Date</th>
 									<th>Rate</th>
 									<th>Batch Name</th>
-			
+									<th>Actions</th>
 								</thead>
 								<tbody>
 									<?php

@@ -44,7 +44,7 @@ $trainees=$train_con->getTrainCourseInfo();
                                         if($trainee['email_status']==1){
                                             echo "<td class='text-info'>Already Uploaded</td>";
                                         }else{
-                                            echo "<td id=".$trainee['id']."><a class='btn btn-info mx-3 send' href='email_trainee_course.php?id=".$trainee['id']."' name='send'>Send</a></div></td>";
+                                            echo "<td id=".$trainee['id']."><a class='btn btn-info mx-3 send' href='email_trainee_course.php?id=".$trainee['id']."'>Send</a></div></td>";
 
                                         }
                                         echo "<td id='".$trainee['id']."'><a class='btn btn-warning mx-3' href='edit_trainee_course.php?id=".$trainee['id']."'>Edit</a><button class='btn btn-danger tsbtn_delete'>Delete</button></td>";

@@ -2,9 +2,9 @@
 
 include_once __DIR__.'/../controller/trainee_courseController.php';
 
-$id=$_POST['id'];
+$pid=$_POST['id'];
 $trainee_cos=new train_cosController();
-$trainee_courses=$trainee_cos->gettraineeByBatchs($id);
+$trainee_courses=$trainee_cos->gettraineeByBatchs($pid);
 
 $html="";
 $html.="<div class='row my-3'>";

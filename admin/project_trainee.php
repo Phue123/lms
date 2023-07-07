@@ -5,7 +5,6 @@ include_once __DIR__.'/../controller/projectTraineeController.php';
 $project_con=new projectTraineeController();
 $projects=$project_con->getProjectTraineess();
 
-
 ?>
 
 			<main class="content">
@@ -13,9 +12,8 @@ $projects=$project_con->getProjectTraineess();
 
 					<h1 class="h3 mb-3"><strong>Project trainee</strong> Dashboard</h1>
 					<?php 
-					if(isset($_GET['status'])){
-						$id=$_GET['status'];
-						var_dump($id);
+					if(isset($_GET['status']) && $_GET['status']==4){
+						echo "<div class='text-success'>Successfully changed</div>";
 					}
 					?>
 
@@ -44,7 +42,7 @@ $projects=$project_con->getProjectTraineess();
 										echo "<td>". $project['title'] ."</td>";
 										echo "<td>". $project['tname'] ."</td>";
 										echo "<td>". $project['status'] ."</td>";
-										echo "<td id='".$project['id']."'> <a class='btn btn-warning mx-3' href='add_ojttrainee.php?id=".$project['project_id']."'>Trainee</a><button class='btn btn-danger ptbtn_delete'>Delete</button></div>" ;
+										echo "<td id='".$project['id']."'> <a class='btn btn-warning mx-3' href='add_ojttrainee.php?id=".$project['project_id']."'>Trainee</a><button class='btn btn-danger ptbtn_delete'>Delete</button><a class='btn btn-info mx-3' href='details.php?id=".$project['id']."'>Details</a></div>" ;
 										echo "</tr>";
 									}
 									?>

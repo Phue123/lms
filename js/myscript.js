@@ -320,31 +320,31 @@ $(document).ready(function(){
         }
     })
 
-    $(document).on('click','.send',function(e){
-        e.preventDefault();
-        let status=confirm("Are you sure to send");
-        if(status){
-            let id=$(this).parent().attr('id');
-            $.ajax({
-                method:'post',
-                url:'edit_send.php',
-                data:{id:id},
-                success:function(response){
-                    if(response=='success'){
-                        location.href="trainee_course.php";
-                    }
-                    else
-                    {
-                       alert("successfully");
-                    }
-                },
-                error:function(error){
+    // $(document).on('click','.send',function(e){
+    //     e.preventDefault();
+    //     let status=confirm("Are you sure to send");
+    //     if(status){
+    //         let id=$(this).parent().attr('id');
+    //         $.ajax({
+    //             method:'post',
+    //             url:'edit_send.php',
+    //             data:{id:id},
+    //             success:function(response){
+    //                 if(response=='success'){
+    //                     location.href="trainee_course.php";
+    //                 }
+    //                 else
+    //                 {
+    //                    alert("successfully");
+    //                 }
+    //             },
+    //             error:function(error){
 
-                }
-            })
-        }
+    //             }
+    //         })
+    //     }
         
-    })
+    // })
 
 });
 
@@ -402,6 +402,7 @@ $(document).ready(function(){
         e.preventDefault();
         console.log("btn click");
         let id=$(this).parent().attr('id');
+        console.log(id)
         $.ajax({
             url:'get_trainee.php',
             method:'post',

@@ -23,13 +23,13 @@ class projectTrainee{
         $con=Database::connect();
         $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-        $sql="SELECT * from project_trainee where project_trainee.project_id=:id";
-        // $sql="SELECT project_trainee.project_id as project_id,project.title as pname,trainee.name as tname,project_trainee.status as status
-        // from project join project_trainee join trainee_course join trainee
-        // where project.id=project_trainee.project_id
-        // and project_trainee.trainee_course_id=trainee_course.id
-        // and trainee_course.id=trainee.id
-        // and project_trainee.project_id=:id";
+        //$sql="SELECT * from project_trainee where project_trainee.project_id=:id";
+        $sql="SELECT project_trainee.project_id as project_id,project.title as pname,trainee.name as tname,project_trainee.status as status
+        from project join project_trainee join trainee_course join trainee
+        where project.id=project_trainee.project_id
+        and project_trainee.trainee_course_id=trainee_course.id
+        and trainee_course.id=trainee.id
+        and project_trainee.project_id=:id";
         $statement=$con->prepare($sql);
         $statement->BindParam(':id',$id);
         if($statement->execute()){
@@ -141,6 +141,42 @@ class projectTrainee{
            return true;
         }else
         {
+            return false;
+        }
+    }
+
+    public function getdetailsInfo($id){
+        $con=Database::connect();
+        $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+        $sql="SELECT project.title as title,project_id as project_id,trainee_course_id as tcid,trainee.name as tname,project_trainee.status as status
+        from project join project_trainee join trainee_course join trainee
+        on project.id=project_trainee.project_id
+        and project_trainee.trainee_course_id=trainee_course.id
+        and trainee_course.trainee_id=trainee.id
+        and project_trainee.id=:id";
+        $statement=$con->prepare($sql);
+        $statement->BindParam(':id',$id);
+        
+        if($statement->execute()){
+            $result=$statement->fetch(PDO::FETCH_ASSOC);
+            return $result;
+        }
+    }
+
+    public function settrainee($id,$project_id,$tcid,$status){
+        $con=Database::connect();
+        $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+        $sql="UPDATE project_trainee set project_id=:project_id,trainee_course_id=:tname,status=:status where id=:id";
+        $statement=$con->prepare($sql);
+        $statement->BindParam('id',$id);
+        $statement->BindParam('project_id',$project_id);
+        $statement->BindParam('tname',$tcid);
+        $statement->BindParam('status',$status);
+        if($statement->execute()){
+           return true;
+        }else{
             return false;
         }
     }

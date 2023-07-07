@@ -7,12 +7,23 @@ $cat_controller=new Categorycontroller();
 $category=$cat_controller->getCategoryInfoAdmin($id);
 
 if(isset($_POST['update'])){
+    if(empty($_POST['name'])){
+        $nameerror="Please fill your name";
+    }else{
+        $name=$_POST['name'];
+    }
+
+    if(empty($_POST['name'])){
+        $error=true;
+    }
+    else{
     $name=$_POST['name'];
     $status=$cat_controller->updateCategoryAdmin($id,$name);
     if($status){
         $message=2;
         echo '<script>location.href="category.php?status='.$message.'"</script>';
     }
+}
 }
 ?>
 
@@ -27,6 +38,7 @@ if(isset($_POST['update'])){
                                 <div>
                                     <label for="" class="form-label">Category Name</label>
                                     <input type="text" name="name" class="form-control" value="<?php echo $category['name'] ?>">
+                                    <span class="text-danger"><?php if(isset($error) && isset($nameerror)) echo $nameerror; ?></span>
                                 </div>
                                 <div class="mt-3">
                                     <button class="btn btn-dark" name="update">Update</button>
